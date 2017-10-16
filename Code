@@ -1,0 +1,6 @@
+print ("Hello! Welcome to Quixo!")
+knowledge = str(input("Do you know how to play? (Y/N): "))
+
+while knowledge != "Y" or "N":
+    knowledge = str(input("Sorry, that was an invalid input, please enter 'Y' or "N"))
+    
