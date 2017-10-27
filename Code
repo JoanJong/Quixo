@@ -30,7 +30,7 @@ if Mode == 1:
     Difficulty=int(input("Easy - 1\nNormal - 2\nHard - 3\nSelect the difficulty level: "))
     while Difficulty != 1 and 2 and 3:
         Difficulty = int(input("Sorry that was an invalid input. Please select 1,2 or 3:"))
-    print('Start game!\n')
+    print('\nStart game!\n')
     Display=np.zeros((boardsize,boardsize), dtype=np.int)
 
 print(Display)
@@ -66,15 +66,15 @@ def right(r,c,boardsize,x): #push from right
 def win():
     for i in range(boardsize):
         for j in range(boardsize-1):
-            if display[i,j]==display[i,j+1]:
+            if Display[i,j]==Display[i,j+1]:
                 return True
     for j in range(boardsize):
         for i in range(boardsize-1):
-            if display[i,j]==display[i+1,j]:
+            if Display[i,j]==D[i+1,j]:
                 return True
     boardsizel=list(range(boardsize-1))
     for (i,j) in zip(boardsizel,boardsizel): 
-             if display[i,j]==display[i+1,j+1]:
+             if Display[i,j]==Display[i+1,j+1]:
                  return True
     else: return False
   
