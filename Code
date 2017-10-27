@@ -1,6 +1,80 @@
-print ("Hello! Welcome to Quixo!")
-knowledge = str(input("Do you know how to play? (Y/N): "))
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Oct 16 12:03:38 2017
 
-while knowledge != "Y" or "N":
-    knowledge = str(input("Sorry, that was an invalid input, please enter 'Y' or "N"))
+@author: lianalim
+"""
+
+import numpy as np
+print("Hello! Welcome to Quixo!")
+knowledge=str(input("Do you know how to play? (y/n): "))
+
+while knowledge not in ["y","n"]:
+    knowledge=str(input("Sorry, that was an invalid input, please enter 'y' or 'n': "))
+if knowledge=='n':
+    print("Quixo bears a superficial resemblance to Tic-Tac-Toe – with one player being crosses and the other circles, and with both trying to create a line of their symbol – but that's where the resemblance ends. The pieces in the game are cubes that have a circle on one side, a cross on another, and blank faces on the other four. The game will start with all 25 cubes bearing blank faces, if the board grid is 5x5. On a turn, the active player takes a cube that is blank or bearing his symbol from the outer ring of the grid, rotates it so that it shows his symbol (if needed), then adds it to the grid by pushing it into one of the rows from which it was removed. Thus, a few pieces of the grid change places each turn, and the cubes slowly go from blank to crosses and circles. Play continues until someone forms an orthogonal or diagonal line of five cubes bearing his symbol, with this person winning the game.")
+boardsize=int(input('Please input board size: '))
+while boardsize<=1:
+    boardsize=int(input('Sorry that was an invalid input. Please enter boardsize>1: '))
+print('Please select game mode')
+print('1 - Computer\n2 - Human')
+while True:
+    try:
+        Mode=int(input('Please choose 1 or 2: '))
+        break
+    except ValueError:
+        print("This is not a number!")
+while Mode !=1 and 2:
+    Mode=int(input("Sorry that was an invalid number. Please enter '1' or '2': "))
+if Mode == 1:
+    Difficulty=int(input("Easy - 1\nNormal - 2\nHard - 3\nSelect the difficulty level: "))
+    while Difficulty != 1 and 2 and 3:
+        Difficulty = int(input("Sorry that was an invalid input. Please select 1,2 or 3:"))
+    print('Start game!\n')
+    Display=np.zeros((boardsize,boardsize), dtype=np.int)
+
+print(Display)
+#insert all functions for computer within this bracket
+
+
+
+
+
+#functions
+
+def top(r,c,boardsize,x): #for putting it from top
+    for i in range(boardsize-1,-1,-1):
+        Display[i,c]=Display[i-1,c]
+    Display[0,c]=[x]
     
+def left(r,c,boardsize,x):#for putting it from left
+    for i in range (boardsize-1,-1,-1):
+        Display[r,i]=Display[r,i-1]
+    Display[r,0]=[x]
+    
+def bottom(r,c,boardsize,x):#push from bottom
+    for i in range(0,boardsize-1,1):
+        Display[i,c]=Display[i+1,c]
+    Display[r,c]=x
+    
+def right(r,c,boardsize,x): #push from right
+    for i in range (0,boardsize-1,1):
+        Display[r,i]=Display[r,i+1]
+    Display[r,c]=[x]
+
+
+def win():
+    for i in range(boardsize):
+        for j in range(boardsize-1):
+            if display[i,j]==display[i,j+1]:
+                return True
+    for j in range(boardsize):
+        for i in range(boardsize-1):
+            if display[i,j]==display[i+1,j]:
+                return True
+    boardsizel=list(range(boardsize-1))
+    for (i,j) in zip(boardsizel,boardsizel): 
+             if display[i,j]==display[i+1,j+1]:
+                 return True
+    else: return False
+  
